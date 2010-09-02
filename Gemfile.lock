@@ -46,6 +46,7 @@ GEM
     mongrel (1.2.0.pre2)
       daemons (~> 1.0.10)
       gem_plugin (~> 0.2.3)
+    nifty-generators (0.4.0)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.13)
@@ -79,5 +80,6 @@ DEPENDENCIES
   cgi_multipart_eof_fix
   fastthread
   mongrel (= 1.2.0.pre2)
+  nifty-generators
   rails (= 3.0.0)
   sqlite3-ruby
