@@ -12,7 +12,7 @@ class ActivitiesController < ApplicationController
   end
   
   def create
-    usernames = params[:activity].delete(:users).split(",")
+    usernames = params[:activity].delete(:user_names).split(",")
     users = usernames.map{|n| User.find_by_name(n)}
     params[:activity][:users] = users
     @activity = Activity.new(params[:activity])
@@ -30,6 +30,9 @@ class ActivitiesController < ApplicationController
   
   def update
     @activity = Activity.find(params[:id])
+    usernames = params[:activity].delete(:user_names).split(",")
+    users = usernames.map{|n| User.find_by_name(n)}
+    params[:activity][:users] = users
     if @activity.update_attributes(params[:activity])
       flash[:notice] = "Successfully updated activity."
       redirect_to @activity
