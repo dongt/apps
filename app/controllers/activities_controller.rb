@@ -12,6 +12,9 @@ class ActivitiesController < ApplicationController
   end
   
   def create
+    usernames = params[:activity].delete(:users).split(",")
+    users = usernames.map{|n| User.find_by_name(n)}
+    params[:activity][:users] = users
     @activity = Activity.new(params[:activity])
     if @activity.save
       flash[:notice] = "Successfully created activity."
