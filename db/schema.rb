@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100903025711) do
+ActiveRecord::Schema.define(:version => 20100903032802) do
+
+  create_table "activities", :force => true do |t|
+    t.string   "subject"
+    t.string   "status"
+    t.string   "detail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"

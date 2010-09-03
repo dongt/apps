@@ -1,0 +1,20 @@
+<% title "Activity" %>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @activity.subject %>
+</p>
+<p>
+  <strong>Status:</strong>
+  <%= @activity.status %>
+</p>
+<p>
+  <strong>Detail:</strong>
+  <%= @activity.detail %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_activity_path(@activity) %> |
+  <%= link_to "Destroy", @activity, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", activities_path %>
+</p>

@@ -1,0 +1,16 @@
+<%= form_for @activity do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :subject %><br />
+    <%= f.text_field :subject %>
+  </p>
+  <p>
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </p>
+  <p>
+    <%= f.label :detail %><br />
+    <%= f.text_field :detail %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

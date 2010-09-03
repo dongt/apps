@@ -1,4 +1,6 @@
 Fanfan::Application.routes.draw do
+  resources :activities
+
   resources :users
 
   # The priority is based upon order of creation:

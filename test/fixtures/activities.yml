@@ -1,0 +1,9 @@
+one:
+  subject: MyString
+  status: MyString
+  detail: MyString
+
+two:
+  subject: MyString
+  status: MyString
+  detail: MyString
