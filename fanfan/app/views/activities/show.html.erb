@@ -1,4 +1,4 @@
-<% title "Activity" %>
+<% title "Activities" %>
 
 <p>
   <strong>Subject:</strong>
@@ -7,6 +7,14 @@
 <p>
   <strong>Status:</strong>
   <%= @activity.status %>
+</p>
+<p>
+  <strong>Cost:</strong>
+  <%= @activity.cost %>
+</p>
+<p>
+  <strong>Average:</strong>
+  <%= @activity.cost/@activity.users.size unless @activity.users.empty?%>
 </p>
 <p>
   <strong>Detail:</strong>

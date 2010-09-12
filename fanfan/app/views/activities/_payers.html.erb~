@@ -1,0 +1,1 @@
+<span><%= text_field :payer%><%= number_field :amount%></span>

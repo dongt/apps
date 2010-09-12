@@ -13,8 +13,17 @@
     <%= f.text_field :detail %>
   </p>
   <p>
+    <%= f.label :cost%><br />
+    <%= f.text_field :cost%>
+  </p>
+  <p>
     <%= f.label "Paticipants"%><br />
     <%= f.text_field :user_names%>
   </p>
+  <p>
+    <%= f.label "Payers"%><br />
+    <%= render 'payers' %>
+  </p>
+
   <p><%= f.submit %></p>
 <% end %>

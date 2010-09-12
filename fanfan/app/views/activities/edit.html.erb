@@ -1,5 +1,12 @@
 <% title "Edit Activity" %>
+<script>
+$(function (){
+  alert('DOM has loaded.');
+  $('label').css('color','red');
+  $('#add_payer').click(function(){$('.payers').append("payer1"));alert('adding payer');})
+});
 
+</script>
 <%= render 'form' %>
 
 <p>
