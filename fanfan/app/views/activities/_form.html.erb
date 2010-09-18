@@ -4,6 +4,11 @@ $(function (){
   $('#add_payer').click(function(){$('#payers').append($('.templ_payer:eq(0)').clone().css('display','')); })
 });
 
+function addNewPayer()
+{
+  $('#payers').append($('.templ_payer:eq(0)').clone().css('display',''));
+}
+
 </script>
 
 <%= form_for @activity do |f| %>
