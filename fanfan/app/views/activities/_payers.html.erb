@@ -1,4 +1,12 @@
 <div id='payers'>
-<span id='payer1' class='payer_input'><%= text_field_tag :payer%><%= number_field_tag :amount%></span>
-<span id='add_payer'><a href="#">add payer</a></span>
+<div style='clear: both' class='newPayer'>
+  <%= label :payers, "Payer Name:"%><%= text_field_tag :payer%>
+  <%= label :payers, "Amount:"%>  <%= number_field_tag :amount, nil, {:min => 1,:step=>1}%>
 </div>
+<div style='clear: both;display: none' class='templ_payer' >
+  <%= label :payers, "Payer Name:"%><%= text_field_tag :payer%>
+  <%= label :payers, "Amount:"%>  <%= number_field_tag :amount, nil, {:min => 1,:step=>1}%>
+</div>
+
+</div>
+<span id='add_payer'><a href="#">add payer</a></span>
