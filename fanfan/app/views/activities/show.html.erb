@@ -25,7 +25,29 @@
   <%= @activity.users.map{|u| u.name}.join(",") %>
 
 <p>
+<div>
+  <strong>Payments Details:</strong>
+  <table>
+    <tr>
+      <th>member</th>
+      <th>payed</th>
+      <th>debts</th>
+    </tr>
+    <% users_count = @activity.payers.size %>
+    <% average = @activity.cost / users_count %>
+    <% for payment in @activity.payments %>
+      <tr>
+         <td><%=payment.user.name%></td>
+         <td><%=payment.amount%></td>
+         <td><%=average-payment.amount%></td>
+      </tr>
+    <% end%>
+
+  </table>
+
+</div>
+
   <%= link_to "Edit", edit_activity_path(@activity) %> |
   <%= link_to "Destroy", @activity, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", activities_path %>
-</p>
+

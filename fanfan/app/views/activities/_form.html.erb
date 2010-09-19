@@ -1,12 +1,25 @@
 <script>
 $(function (){
   /*$('label').css('color','red');*/
-  $('#add_payer').click(function(){$('#payers').append($('.templ_payer:eq(0)').clone().css('display','')); })
+  /*$('#add_payer').click(function(){$('#payers').append($('.templ_payer:eq(0)').clone().css('display','')); })*/
 });
 
+var payercount=1;
 function addNewPayer()
 {
-  $('#payers').append($('.templ_payer:eq(0)').clone().css('display',''));
+
+  /*var newpayer=$('#payers').append($('#tmpl_payer').clone().css('display',''));*/
+  var newpayer=$('#payer1').clone();
+  /*newpayer.insertAfter(lastid);*/
+  $('#payers').append(newpayer);
+
+  newpayer.attr('id','payer'+(++payercount));
+
+  $('.payername:last').attr('name','payer'+(payercount));
+  $('.payamount:last').attr('name','payamount'+(payercount));
+  newpayer.children().eq(1).attr('value','');
+  /*payername.focus();*/
+  /*newpayer('input :eq(0)).attr('name','payer2');*/
 }
 
 </script>
@@ -24,14 +37,6 @@ function addNewPayer()
   <p>
     <%= f.label :detail %><br />
     <%= f.text_field :detail %>
-  </p>
-  <p>
-    <%= f.label :cost%><br />
-    <%= f.number_field :cost,{:step=>1,:min=>1}%>
-  </p>
-  <p>
-    <%= f.label "Paticipants"%><br />
-    <%= f.text_field :user_names%>
   </p>
   <p>
     <%= f.label "Payers"%><br/>

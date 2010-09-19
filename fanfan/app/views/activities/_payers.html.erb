@@ -1,12 +1,8 @@
 <div id='payers'>
-<div style='clear: both' class='newPayer'>
-  <%= label :payers, "Payer Name:"%><%= text_field_tag :payer%>
-  <%= label :payers, "Amount:"%>  <%= number_field_tag :amount, nil, {:min => 1,:step=>1}%>
-</div>
-<div style='clear: both;display: none' class='templ_payer' >
-  <%= label :payers, "Payer Name:"%><%= text_field_tag :payer%>
-  <%= label :payers, "Amount:"%>  <%= number_field_tag :amount, nil, {:min => 1,:step=>1}%>
+<div style='clear: both' class='newPayer' id='payer1'>
+  <%= label :payers, "Payer Name:"%><%= text_field_tag :payer,nil,:class=>'payername',:name=>'payer1'%>
+  <%= label :payers, "Amount:"%>  <%= number_field_tag :amount, nil, {:min => 1,:step=>1,:class=>'payamount',:name=>'payamount1'}%>
 </div>
 
 </div>
-<span id='add_payer'><%= button_to_function 'add payer', 'addNewPayer'%></span>
+<span id='add_payer'><%= button_to_function 'add payer', 'addNewPayer()'%></span>
