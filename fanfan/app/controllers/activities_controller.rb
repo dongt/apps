@@ -23,7 +23,7 @@ class ActivitiesController < ApplicationController
         amountk="payamount#{i}"
         name=params[namek];
         amount=params[amountk]
-        user=User.find_by_name(name)
+        user=User.find_by_username(name)
         payment=Payment.new(:amount=>amount)
         payment.user=user;
         payment.amount=amount;

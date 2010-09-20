@@ -37,7 +37,7 @@
     <% average = @activity.cost / users_count %>
     <% for payment in @activity.payments %>
       <tr>
-         <td><%=payment.user.name%></td>
+         <td><%=payment.user.username%></td>
          <td><%=payment.amount%></td>
          <td><%=average-payment.amount%></td>
       </tr>
