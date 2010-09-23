@@ -23,7 +23,7 @@ class ActivitiesController < ApplicationController
         amountk="payamount#{i}"
         name=params[namek];
         amount=params[amountk]
-        user=User.find_by_name(name)
+        user=User.find_by_username(name)
         payment=Payment.new(:amount=>amount)
         payment.user=user;
         payment.amount=amount;
@@ -36,6 +36,7 @@ class ActivitiesController < ApplicationController
 
     @activity = Activity.new(params[:activity])
     @activity.cost=cost
+    @activity.status='new'
     if @activity.save
       flash[:notice] = "Successfully created activity."
       redirect_to @activity

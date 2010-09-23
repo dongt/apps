@@ -30,10 +30,12 @@ function addNewPayer()
     <%= f.label :subject %><br />
     <%= f.text_field :subject %>
   </p>
-  <p>
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
-  </p>
+  <% if @activity.id %>
+    <p>
+      <%= f.label :status %><br />
+      <%= f.text_field :status %>
+    </p>
+  <% end %>
   <p>
     <%= f.label :detail %><br />
     <%= f.text_field :detail %>
