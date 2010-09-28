@@ -1,4 +1,6 @@
 Fanfan::Application.routes.draw do
+  resources :messages
+
   match 'signup' => 'users#new', :as => :signup
 
   match 'logout' => 'sessions#destroy', :as => :logout

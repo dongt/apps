@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100919171935) do
+ActiveRecord::Schema.define(:version => 20100928093319) do
 
   create_table "activities", :force => true do |t|
     t.string   "subject"
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(:version => 20100919171935) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "cost"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.string   "subject"
+    t.datetime "sent_date"
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.string   "status"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "participations", :force => true do |t|
