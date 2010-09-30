@@ -1,3 +1,5 @@
 class Message < ActiveRecord::Base
-  validates_presence_of :subject
+  belongs_to :sender, :class_name => 'User'
+  belongs_to :receiver, :class_name => 'User'
+  validates :subject, :presence => true
 end

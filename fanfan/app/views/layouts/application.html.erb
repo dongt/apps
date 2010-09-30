@@ -11,11 +11,41 @@
   </head>
   <body>
     <div id="container">
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <% end %>
-      <%= content_tag :h1, yield(:title) if show_title? %>
-      <%= yield %>
+      <div id="header">
+        <%= image_tag "logo.png"%>
+        <span id='sitetitle'> FanFan</span>
+        <div id="welcome">
+          <% if logged_in? %>
+          Welcome <%= current_user.username %>! Not you?
+          <%= link_to "Log out", logout_path %>
+          <% else %>
+          <%= link_to "Sign up", signup_path %> or
+          <%= link_to "log in", login_path %>.
+          <% end %>
+        </div>
+      </div>
+      <div id="wrapper">
+        <div id="navigation">
+          <ul>
+            <li><%= link_to "Activities",:controller => 'activities'%></li>
+            <li><%= link_to "Inbox",:controller => 'messages'%></li>
+          </ul>
+        </div>
+        <div id="content">
+          <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          <% end %>
+
+          <%= content_tag :h1, yield(:title) if show_title? %>
+          <%= yield %>
+
+        </div>
+      </div>
+      <div id="footer">
+      </div>
+
     </div>
   </body>
+
+
 </html>

@@ -1,8 +1,9 @@
 class MessagesController < ApplicationController
+  before_filter :login_required
   # GET /messages
   # GET /messages.xml
   def index
-    @messages = Message.all
+    @messages = current_user.messages
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,6 +26,7 @@ class MessagesController < ApplicationController
   # GET /messages/new.xml
   def new
     @message = Message.new
+    @users = User.find(:all)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,8 +42,11 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.xml
   def create
+    debugger
     @message = Message.new(params[:message])
-
+    @message.status = 'new'
+    @message.sent_date = Time.new
+    @message.sender = current_user
     respond_to do |format|
       if @message.save
         format.html { redirect_to(@message, :notice => 'Message was successfully created.') }

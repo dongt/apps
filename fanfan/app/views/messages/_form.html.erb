@@ -12,24 +12,12 @@
   <% end %>
 
   <div class="field">
+    <strong>Send to:</strong>
+    <%= select_tag "message[receiver_id]", options_from_collection_for_select(@users,"id","username")%>
+  </div>
+  <div class="field">
     <%= f.label :subject %><br />
     <%= f.text_field :subject %>
-  </div>
-  <div class="field">
-    <%= f.label :sent_date %><br />
-    <%= f.datetime_select :sent_date %>
-  </div>
-  <div class="field">
-    <%= f.label :sender_id %><br />
-    <%= f.text_field :sender_id %>
-  </div>
-  <div class="field">
-    <%= f.label :receiver_id %><br />
-    <%= f.text_field :receiver_id %>
-  </div>
-  <div class="field">
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
   </div>
   <div class="field">
     <%= f.label :body %><br />

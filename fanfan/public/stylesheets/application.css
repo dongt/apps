@@ -73,3 +73,42 @@ a {
 .error_messages ul {
   margin: 0;
 }
+
+#header {
+/*background-color: #333;*/
+background-repeat: no-repeat;
+
+
+}
+#sitetitle {
+font-size: 50px;
+
+color: #559D55;
+}
+#welcome {
+float: right;
+}
+
+#content {
+/*background-color: #333;*/
+height: 500px;
+height: 500px;
+margin-top: 10px;
+min-height: 500px;
+
+}
+#navigation {
+ background-color: #F4F4F4;
+float: right;
+height: 500px;
+width: 200px;
+min-height: 500px;
+
+}
+
+#footer {
+/* background-color: #333; */
+height: 100px;
+margin-top: 10px;
+
+}
