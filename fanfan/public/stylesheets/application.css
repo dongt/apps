@@ -90,25 +90,23 @@ float: right;
 }
 
 #content {
-/*background-color: #333;*/
-height: 500px;
-height: 500px;
-margin-top: 10px;
-min-height: 500px;
 
+width:540px;
+min-height:500px; /* for modern browsers */
+height:auto !important; /* for modern browsers */
+height:500px; /* for IE5.x and IE6 */
+margin-top:10px;
 }
 #navigation {
  background-color: #F4F4F4;
-float: right;
-height: 500px;
-width: 200px;
-min-height: 500px;
-
+width:200px;
+min-height:500px; /* for modern browsers */
+height:auto !important; /* for modern browsers */
+height:500px; /* for IE5.x and IE6 */
+float:right;
 }
 
 #footer {
-/* background-color: #333; */
-height: 100px;
-margin-top: 10px;
-
+height:100px;
+margin-top:10px;
 }
