@@ -1,9 +1,9 @@
 <div id='payers'>
 <div  class='newPayer' id='payer1'>
   <%= label :payers, "Payer:"%>
-    <%= select_tag "activity[payments][receiver_id]", options_from_collection_for_select(@users,"id","username"), :class=>'payername',:name=>'payer1',:id=>'payername1'%>
+    <%= select_tag "activity[payments][]", options_from_collection_for_select(@users,"id","username"), :class=>'payername',:id=>'payername1'%>
 
-  <%= label :payers, "Amount:"%>  <%= number_field_tag :amount, nil, {:min => 1,:step=>1,:class=>'payamount',:name=>'payamount1',:id=>'payamount1'}%>
+  <%= label :payers, "Amount:"%>  <%= number_field_tag :amount, nil, {:min => 1,:step=>1,:class=>'payamount',:name=>'activity[payments][]',:id=>'payamount1'}%>
 </div>
 
 </div>

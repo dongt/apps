@@ -17,23 +17,25 @@ class ActivitiesController < ApplicationController
     #users = usernames.map{|n| User.find_by_name(n)}
     #params[:activity][:users] = users
     cost=0
-    payers_params=params.keys.find_all{|key| key =~ /^payer\d+/}
-    if(payers_params)
-      payments = payers_params.map do |namek|
-        i=namek.match(/payer(\d+)/)[1]
-        amountk="payamount#{i}"
-        name=params[namek];
-        amount=params[amountk]
-        user=User.find_by_username(name)
-        payment=Payment.new(:amount=>amount)
-        payment.user=user;
-        payment.amount=amount;
-        cost += payment.amount
-        payment
-      end
-      params[:activity][:payments] = payments
-    end
-
+    payments = params[:activity][:payments].inject([]){|r,i| puts r;puts i; r[-1].is_a?(String) ?  r<<({'user_id' => r.pop().to_i, "amount" => i}) : r<<i}
+   debugger
+#     payers_params=params.keys.find_all{|key| key =~ /^payer\d+/}
+#     if(payers_params)
+#       payments = payers_params.map do |namek|
+#         i=namek.match(/payer(\d+)/)[1]
+#         amountk="payamount#{i}"
+#         name=params[namek];
+#         amount=params[amountk]
+#         user=User.find_by_username(name)
+#         payment=Payment.new(:amount=>amount)
+#         payment.user=user;
+#         payment.amount=amount;
+#         cost += payment.amount
+#         payment
+#       end
+#       params[:activity][:payments] = payments
+#     end
+    params[:activity][:payments] = payments
 
     @activity = Activity.new(params[:activity])
     @activity.cost=cost

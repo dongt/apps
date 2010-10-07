@@ -8,13 +8,11 @@ var payercount=1;
 function addNewPayer()
 {
 
-  /*var newpayer=$('#payers').append($('#tmpl_payer').clone().css('display',''));*/
   var newpayer=$('#payer1').clone();
-  /*newpayer.insertAfter(lastid);*/
   $('#payers').append(newpayer);
 
   newpayer.attr('id','payer'+(++payercount));
-
+  return;
   $('.payername:last').attr('id','payername'+(payercount));
   $('.payamount:last').attr('id','payamount'+(payercount));
   $('.payername:last').attr('name','payer'+(payercount));
