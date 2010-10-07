@@ -9,6 +9,7 @@ class ActivitiesController < ApplicationController
 
   def new
     @activity = Activity.new
+    @users = User.find(:all)
   end
 
   def create
@@ -41,6 +42,7 @@ class ActivitiesController < ApplicationController
       flash[:notice] = "Successfully created activity."
       redirect_to @activity
     else
+      @users=User.find(:all)
       render :action => 'new'
     end
   end
