@@ -16,29 +16,13 @@ class ActivitiesController < ApplicationController
     #usernames = params[:activity].delete(:user_names).split(",")
     #users = usernames.map{|n| User.find_by_name(n)}
     #params[:activity][:users] = users
-    cost=0
-    payments = params[:activity][:payments].inject([]){|r,i| puts r;puts i; r[-1].is_a?(String) ?  r<<({'user_id' => r.pop().to_i, "amount" => i}) : r<<i}
-   debugger
-#     payers_params=params.keys.find_all{|key| key =~ /^payer\d+/}
-#     if(payers_params)
-#       payments = payers_params.map do |namek|
-#         i=namek.match(/payer(\d+)/)[1]
-#         amountk="payamount#{i}"
-#         name=params[namek];
-#         amount=params[amountk]
-#         user=User.find_by_username(name)
-#         payment=Payment.new(:amount=>amount)
-#         payment.user=user;
-#         payment.amount=amount;
-#         cost += payment.amount
-#         payment
-#       end
-#       params[:activity][:payments] = payments
-#     end
+    debugger
+    payments = params[:activity][:payments].inject([]){|r,i| r[-1].is_a?(String) ?  r<<(Payment.new(:user_id => r.pop().to_i, :amount => i)) : r<<i}
+
     params[:activity][:payments] = payments
 
     @activity = Activity.new(params[:activity])
-    @activity.cost=cost
+
     @activity.status='new'
     if @activity.save
       flash[:notice] = "Successfully created activity."
@@ -51,13 +35,15 @@ class ActivitiesController < ApplicationController
 
   def edit
     @activity = Activity.find(params[:id])
+    @users = User.find(:all)
   end
 
   def update
+    debugger
     @activity = Activity.find(params[:id])
-    usernames = params[:activity].delete(:user_names).split(",")
-    users = usernames.map{|n| User.find_by_name(n)}
-    params[:activity][:users] = users
+    payments = params[:activity][:payments].inject([]){|r,i| r[-1].is_a?(String) ?  r<<(Payment.new(:user_id => r.pop().to_i, :amount => i)) : r<<i}
+    debugger
+    params[:activity][:payments] = payments
     if @activity.update_attributes(params[:activity])
       flash[:notice] = "Successfully updated activity."
       redirect_to @activity

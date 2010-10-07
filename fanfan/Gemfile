@@ -10,6 +10,7 @@ gem "mongrel", "1.2.0.pre2"
 gem "cgi_multipart_eof_fix"
 gem "fastthread"
 gem "nifty-generators"
+gem 'ruby-debug19', :require => 'ruby-debug'
 
 # Use unicorn as the web server
 # gem 'unicorn'

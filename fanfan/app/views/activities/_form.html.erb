@@ -38,7 +38,10 @@ if($('#payamount1').val()==null || $('#payamount1').val() == "")
 }
 function debug()
 {
-  alert($('#payamount1').val());
+  /*alert($('#payamount1').val());*/
+  var test1=document.getElementById('payername1');
+  alert(test1.selectedIndex);
+  test1.selectedIndex=2;
 }
 </script>
 
