@@ -14,7 +14,7 @@
 </p>
 <p>
   <strong>Average:</strong>
-  <%= @activity.cost/@activity.users.size unless @activity.users.empty?%>
+  <%= @activity.cost/@activity.payers.size unless @activity.payers.empty?%>
 </p>
 <p>
   <strong>Detail:</strong>
@@ -22,7 +22,7 @@
 </p>
 <p>
   <strong>Participants:</strong>
-  <%= @activity.users.map{|u| u.name}.join(",") %>
+  <%= @activity.payer_names %>
 
 <p>
 <div>
@@ -33,8 +33,8 @@
       <th>payed</th>
       <th>debts</th>
     </tr>
-    <% users_count = @activity.payers.size %>
-    <% average = @activity.cost / users_count %>
+    <% payers_count = @activity.payers.size %>
+    <% average = @activity.cost / payers_count %>
     <% for payment in @activity.payments %>
       <tr>
          <td><%=payment.user.username%></td>
