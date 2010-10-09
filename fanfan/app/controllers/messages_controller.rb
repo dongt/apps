@@ -42,7 +42,6 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.xml
   def create
-    debugger
     @message = Message.new(params[:message])
     @message.status = 'new'
     @message.sent_date = Time.new

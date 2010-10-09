@@ -16,7 +16,7 @@ class ActivitiesController < ApplicationController
     #usernames = params[:activity].delete(:user_names).split(",")
     #users = usernames.map{|n| User.find_by_name(n)}
     #params[:activity][:users] = users
-    debugger
+
     payments = params[:activity][:payments].inject([]){|r,i| r[-1].is_a?(String) ?  r<<(Payment.new(:user_id => r.pop().to_i, :amount => i)) : r<<i}
 
     params[:activity][:payments] = payments
@@ -39,10 +39,8 @@ class ActivitiesController < ApplicationController
   end
 
   def update
-    debugger
     @activity = Activity.find(params[:id])
     payments = params[:activity][:payments].inject([]){|r,i| r[-1].is_a?(String) ?  r<<(Payment.new(:user_id => r.pop().to_i, :amount => i)) : r<<i}
-    debugger
     params[:activity][:payments] = payments
     if @activity.update_attributes(params[:activity])
       flash[:notice] = "Successfully updated activity."
