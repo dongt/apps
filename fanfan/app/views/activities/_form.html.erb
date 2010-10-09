@@ -2,6 +2,8 @@
 $(function (){
   /*$('label').css('color','red');*/
   /*$('#add_payer').click(function(){$('#payers').append($('.templ_payer:eq(0)').clone().css('display','')); })*/
+  $('#activity_cost').change(function(){$('#payamount1').attr('value',$('#activity_cost').val())});
+
 });
 
 var payercount=1;
@@ -12,6 +14,7 @@ function addNewPayer()
   $('#payers').append(newpayer);
 
   newpayer.attr('id','payer'+(++payercount));
+  newpayer.children().eq(3).attr('readonly','');
   return;
   $('.payername:last').attr('id','payername'+(payercount));
   $('.payamount:last').attr('id','payamount'+(payercount));
@@ -67,6 +70,7 @@ function debug()
   </p>
   <p>
     <%= f.label "Payers"%><br/>
+    <span style='background-color:#eeeeee;'>The first payer in following list will be taken as the final payer(who gave the money to the waiter or pay by credit card).</span>
   </p>
     <%= render 'payers' %>
 

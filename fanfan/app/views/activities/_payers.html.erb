@@ -1,12 +1,16 @@
 <div id='payers'>
   <% payments = @activity.payments %>
   <% payments << Payment.new() if payments.empty? %>
+    <% payments[0].amount = @activity.cost %>
+    <% readonly = true %>
     <% for payment in payments  %>
+
        <div  class='newPayer' id='payer1'>
           <%= label :payers, "Payer:"%>
           <%= select_tag "activity[payments][]", options_from_collection_for_select(@users,"id","username",{:selected=>payment.user_id}), :class=>'payername',:id=>'payername1'%>
-          <%= label :payers, "Amount:"%>  <%= number_field_tag :amount, payment.amount || 0, {:min => 1,:step=>1,:class=>"payamount",:name=>"activity[payments][]",:id=>"payamount1"}%>
+          <%= label :payers, "Amount:"%>  <%= number_field_tag :amount, payment.amount || 0, {:min => 1,:step=>1,:class=>"payamount",:name=>"activity[payments][]",:id=>"payamount1", :readonly=>readonly}%>
        </div>
+    <% readonly = false %>
 <% end %>
 </div>
 <span id="add_payer"><%= button_to_function "add payer", "addNewPayer()"%></span>

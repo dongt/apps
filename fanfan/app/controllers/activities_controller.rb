@@ -17,9 +17,7 @@ class ActivitiesController < ApplicationController
     #users = usernames.map{|n| User.find_by_name(n)}
     #params[:activity][:users] = users
 
-    payments = params[:activity][:payments].inject([]){|r,i| r[-1].is_a?(String) ?  r<<(Payment.new(:user_id => r.pop().to_i, :amount => i)) : r<<i}
-
-    params[:activity][:payments] = payments
+    params[:activity][:payments] = get_payments
 
     @activity = Activity.new(params[:activity])
 
@@ -40,8 +38,8 @@ class ActivitiesController < ApplicationController
 
   def update
     @activity = Activity.find(params[:id])
-    payments = params[:activity][:payments].inject([]){|r,i| r[-1].is_a?(String) ?  r<<(Payment.new(:user_id => r.pop().to_i, :amount => i)) : r<<i}
-    params[:activity][:payments] = payments
+
+    params[:activity][:payments] = get_payments
     if @activity.update_attributes(params[:activity])
       flash[:notice] = "Successfully updated activity."
       redirect_to @activity
@@ -55,5 +53,18 @@ class ActivitiesController < ApplicationController
     @activity.destroy
     flash[:notice] = "Successfully destroyed activity."
     redirect_to activities_url
+  end
+
+  private
+  def get_payments
+    payments = params[:activity][:payments].inject([]){|r,i| r[-1].is_a?(String) ?  r<<(Payment.new(:user_id => r.pop().to_i, :amount => i)) : r<<i}
+    return payments if payments.size <= 1
+    total = payments[0].amount
+    average = payments[0].amount/payments.size
+
+    #other payed
+    other_total = payments[1..-1].inject(0){ |sum,i| sum += i.amount}
+    payments[0].amount = total - other_total
+    payments
   end
 end
