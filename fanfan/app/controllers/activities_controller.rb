@@ -1,10 +1,35 @@
 class ActivitiesController < ApplicationController
   def index
-    @activities = Activity.all
+    @rows = (params[:rows]||10).to_i
+    @page = (params[:page]||1).to_i
+    @sort = params[:sord]||'desc'
+    @sidx = params[:sidx]||'id'
+
+    if params[:_search] == 'true'
+      field = params[:searchField]
+      value = params[:searchString]
+      oper  = { "eq" => "=","lt" => "<"}[params[:searchOper]]||'like'
+      conditions = "#{field} #{oper} '#{value}'"
+    end
+    @total = Activity.count
+    if conditions
+      @activities = Activity.find(:all,:limit => @rows,:offset => @rows*(@page.to_i-1),:order => "#{@sidx} #{@sort}", conditions.nil? ? nil:conditions => [conditions] )
+    else
+      @activities = Activity.find(:all,:limit => @rows,:offset => @rows*(@page.to_i-1),:order => "#{@sidx} #{@sort}" )
+    end
+
+    respond_to do |format|
+      format.html
+      format.xml { params[:from] == "jqgrid" ? (render :action => "list.rxml") : (render :xml => @activities)}
+    end
   end
 
   def show
     @activity = Activity.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @activity}
+    end
   end
 
   def new

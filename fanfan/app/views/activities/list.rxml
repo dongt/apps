@@ -1,0 +1,13 @@
+xml.rows do
+  xml.page(@page || 1)
+  xml.total(@total/@rows + (@total%@rows == 0 ? 0:1))
+  xml.records(@total)
+  for activity in @activities do
+    xml.row do
+      xml.cell(link_to(activity.subject,activity))
+      xml.cell(activity.status)
+      xml.cell(activity.cost)
+      xml.cell(activity.created_at)
+    end
+  end
+end
